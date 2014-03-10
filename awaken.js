@@ -3,10 +3,11 @@
  
    Bring your elements to life by making them aware of their neighbors.
 
-   Works on sibling elements. A common use case may be elements
-   rendered in a vertical list or a grid of elements.
+   A common use case may be elements rendered in a vertical list or a 
+   grid of elements.
 
-   Each sibling element knows how far away its neighbor is.
+   Each element knows how far away its neighbor is.
+
    Neighborly distance can be used as an input in animation
    callbacks allowing one to create the effect of interacting
    with 'regions' of dom elements rather than a single element
@@ -21,7 +22,8 @@
  
 --- */
 
-var AwakeN = (function($){
+;var AwakeN = (function($){
+    'use strict';
     
     var awaken = {},
         awaken.things=[],
