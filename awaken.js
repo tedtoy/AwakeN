@@ -6,26 +6,20 @@
    A common use case may be elements rendered in a vertical list or a 
    grid of elements.
 
-   Each element knows how far away its neighbor is.
+   Distance to neighboring elements can be used as an input in 
+   animation callbacks allowing one to create the effect of 
+   interacting with 'regions' of elements rather than a single 
+   element at a time. Imagine touching or mousing over an element, 
+   causing it to bounce and causing neighboring elements to
+   bounce proportionately to their distance.
 
-   Neighborly distance can be used as an input in animation
-   callbacks allowing one to create the effect of interacting
-   with 'regions' of dom elements rather than a single element
-   at a time. Imagine touching an element, causing it to bounce
-   while also causing a rippling bouncing effect through nearby 
-   elements that gets weaker as the bounce travels further away.
-
-   This will be very efficient and should work in O(3N) time by 
-   comparing each element to a sparse array of _all_ the elements.
-
-   As a later to-do, this could also be used for collision detection.
- 
 --- */
 
 ;var AwakeN = (function($){
     'use strict';
     
-    var awaken = {},
+    var 
+        awaken = {},
         awaken.things=[],
         awaken.elements=[],
         that = this;
@@ -35,7 +29,7 @@
 
     }();
 
-    awaken.addThing = function(sparse, thing){
+    function addThing(sparse, thing){
         var 
             el = $(thing.el),
             y1 = el.offset.top,
@@ -69,7 +63,7 @@
         //   Each Y coordinate in M contains a list of Things.
         var sparse = [];
         $.each(things, function(a, thing)){
-            sparse = awaken.addThing(sparse, thing);
+            sparse = addThing(sparse, thing);
         }
         
         // compare things to sparse array:
